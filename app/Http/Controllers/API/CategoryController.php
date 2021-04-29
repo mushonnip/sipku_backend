@@ -5,7 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
-use App\Models\Transaction;
+use App\Models\Category;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
@@ -17,7 +18,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
+        $categories = Category::all();
+        return ResponseFormatter::success($categories, "Data kategori berhasil dimuat");
     }
 
     /**
@@ -38,7 +40,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        try {
+            $category = Category::create([
+                'name' => $request->name,
+            ]);
+            return ResponseFormatter::success($category, 'Menambah berhasil');
+        } catch (Exception $e) {
+            return ResponseFormatter::error($e->getMessage(), 'Menambah Gagal');
+        }
     }
 
     /**
@@ -49,7 +62,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        return ResponseFormatter::success($category, 'Sukses');
     }
 
     /**
@@ -72,7 +86,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->update($request->all());
+
+        return ResponseFormatter::success($category,'Kategori berhasil diperbarui');
     }
 
     /**
@@ -83,6 +101,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Category::findOrFail($id)->delete();
+            return ResponseFormatter::success(null,'Transaksi berhasil dihapus');
+        } catch (Exception $e) {
+            return ResponseFormatter::error($e->getMessage(), 'Transaksi Gagal Dihapus');
+        }
     }
 }

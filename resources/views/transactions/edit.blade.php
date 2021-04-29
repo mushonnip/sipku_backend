@@ -7,8 +7,9 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="put" action="{{ route('transactions.update', $transaction->id) }}">
+                <form method="post" action="{{ route('transactions.update', $transaction->id) }}">
                     @csrf
+                    @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="title" class="block font-medium text-sm text-gray-700">Jenis</label>
@@ -36,7 +37,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('category')
+                                    @error('category_id')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                                 </div>
@@ -175,7 +176,9 @@
                                                         </template>
                                                     </div>
                                                 </div>
-
+                                                @error('date')
+                                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                                @enderror
                                         </div>
                                     </div>
 
@@ -185,9 +188,8 @@
                             <div class="mt-5">
                                 <label for="catatan" class="block font-medium text-sm text-gray-700">Catatan</label>
                                 <input type="text" name="note" id="catatan" type="text" value="{{ $transaction->note }}"
-                                    class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                    value="{{ old('catatan', '') }}" />
-                                @error('catatan')
+                                    class="form-input rounded-md shadow-sm mt-1 block w-full" />
+                                @error('note')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -207,6 +209,7 @@
     </div>
 </x-app-layout>
 <script>
+    let dat = {!! json_encode($transaction->date) !!}
     const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
     const DAYS = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
@@ -222,10 +225,12 @@
             days: ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
 
             initDate() {
-                let today = new Date();
-                this.month = today.getMonth();
-                this.year = today.getFullYear();
-                this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+                // let today = new Date();
+                // this.month = today.getMonth();
+                // this.year = today.getFullYear();
+                this.datepickerValue = new Date(dat.toString()).toDateString();
+                // this.datepickerValue = new Date(this.year, this.month, today.getDate());
+                // alert(this.datepickerValue.getFullYear() +"-"+ ('0'+ this.datepickerValue.getMonth()).slice(-2) +"-"+ ('0' + this.datepickerValue.getDate()).slice(-2));
             },
 
             isToday(date) {
@@ -236,7 +241,7 @@
             },
 
             getDateValue(date) {
-                let selectedDate = new Date(this.year, this.month, date);
+                let selectedDate = new Date(dat);
                 this.datepickerValue = selectedDate.toDateString();
 
                 this.$refs.date.value = selectedDate.getFullYear() +"-"+ ('0'+ selectedDate.getMonth()).slice(-2) +"-"+ ('0' + selectedDate.getDate()).slice(-2);

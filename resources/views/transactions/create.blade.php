@@ -55,7 +55,7 @@
 
                             <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
                                 <div class="form-input rounded-md shadow-sm mt-1 block w-full mt-5">
-                                    <div class="mb-5">
+                                    <div class="mb-5 ui-datepicker">
                                         <label for="datepicker" class="block font-medium text-sm text-gray-700">Select Date</label>
                                         <div class="relative">
                                             <input type="hidden" name="date" x-ref="date" id="inputDate">
@@ -169,6 +169,9 @@
         </div>
     </div>
 </x-app-layout>
+<style>
+    .ui-datepicker { z-index: 10000 !important; }
+</style>
 <script>
           const MONTH_NAMES = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
           const DAYS = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];

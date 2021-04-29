@@ -95,8 +95,15 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        $transaction->update($request->all());
+        $request->validate([
+            'category_id' => 'required',
+            'type' => 'required',
+            'nominal' => 'required',
+            'date' => 'required',
+            'note' => 'required',
+        ]);
 
+        $transaction->update($request->all());
         return redirect()->route('transactions.index');
     }
 
