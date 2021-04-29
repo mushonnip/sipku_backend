@@ -48,4 +48,29 @@ class UserController extends Controller
             ],'Authentication Failed', 500);
         }
     }
+
+    public function register(Request $request)
+    {
+        $data = $request->all();
+        $data['password'] = Hash::make($request->password);
+        try {
+            $user = User::create($data);
+            return ResponseFormatter::success($user, 'User berhasi dibuat');
+        } catch (Exception $e) {
+            return ResponseFormatter::error($e, 'Registrasi Gagal');
+        }
+    }
+    public function logout()
+    {
+        // return ResponseFormatter::success($request, 'Sukses');
+        // try {
+        //     $user = Auth::user();
+        //     $user->tokens()->delete();
+        //     // $user = $request->user();
+        //     // $user->currentAccessToken()->delete();
+        //     return ResponseFormatter::success(null, 'Sukses');
+        // } catch (Exception $e) {
+        //     return ResponseFormatter::error($e, 'Gagal');
+        // }
+    }
 }

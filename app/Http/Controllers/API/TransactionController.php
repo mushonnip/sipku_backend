@@ -50,7 +50,7 @@ class TransactionController extends Controller
             'type' => 'required',
             'nominal' => 'required',
             'date' => 'required',
-            'note' => 'required',
+            'note' => 'nullable',
         ]);
 
         try {

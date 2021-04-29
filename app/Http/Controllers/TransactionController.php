@@ -48,7 +48,7 @@ class TransactionController extends Controller
                 // 'user_id' => 'required|numeric',
                 'type' => 'required',
                 'nominal' => 'required',
-                'note' => 'required',
+                'note' => 'nullable',
                 'date' => 'required',
             ]
         );
@@ -100,7 +100,7 @@ class TransactionController extends Controller
             'type' => 'required',
             'nominal' => 'required',
             'date' => 'required',
-            'note' => 'required',
+            'note' => 'nullable',
         ]);
 
         $transaction->update($request->all());

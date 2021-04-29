@@ -45,7 +45,7 @@
 
                             <div class="mt-5">
                                 <label for="nominal" class="block font-medium text-sm text-gray-700">Nominal</label>
-                                <input type="text" name="nominal" id="nominal" type="text"
+                                <input type="number" name="nominal" id="nominal" type="text"
                                     class="form-input rounded-md shadow-sm mt-1 block w-full"
                                     value="{{ old('nominal', '') }}" />
                                 @error('nominal')

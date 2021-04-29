@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignIdFor(Category::class);
             $table->string('nominal');
             $table->date('date');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }
