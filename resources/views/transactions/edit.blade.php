@@ -15,11 +15,11 @@
                             <label for="title" class="block font-medium text-sm text-gray-700">Jenis</label>
                             <div class="mt-2">
                                 <label class="inline-flex items-center">
-                                    <input type="radio" class="form-radio" name="type" value="pemasukan" @if ($transaction->type == 'pemasukan') checked @endif>
+                                    <input type="radio" class="form-radio" name="type" value="Pemasukan" @if ($transaction->type == 'Pemasukan') checked @endif>
                                     <span class="ml-2">Pemasukan</span>
                                 </label>
                                 <label class="inline-flex items-center ml-6">
-                                    <input type="radio" class="form-radio" name="type" value="pengeluaran" @if ($transaction->type == 'pengeluaran') checked @endif>
+                                    <input type="radio" class="form-radio" name="type" value="Pengeluaran" @if ($transaction->type == 'Pengeluaran') checked @endif>
                                     <span class="ml-2">Pengeluaran</span>
                                 </label>
                                 @error('type')

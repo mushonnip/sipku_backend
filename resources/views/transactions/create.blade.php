@@ -14,11 +14,11 @@
                             <label for="title" class="block font-medium text-sm text-gray-700">Jenis</label>
                             <div class="mt-2">
                                 <label class="inline-flex items-center">
-                                    <input type="radio" class="form-radio" name="type" value="pemasukan">
+                                    <input type="radio" class="form-radio" name="type" value="Pemasukan">
                                     <span class="ml-2">Pemasukan</span>
                                 </label>
                                 <label class="inline-flex items-center ml-6">
-                                    <input type="radio" class="form-radio" name="type" value="pengeluaran">
+                                    <input type="radio" class="form-radio" name="type" value="Pengeluaran">
                                     <span class="ml-2">Pengeluaran</span>
                                 </label>
                                 @error('type')

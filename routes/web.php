@@ -24,4 +24,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('transactions', \App\Http\Controllers\TransactionController::class);
     Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    Route::resource('users', \App\Http\Controllers\UsersController::class);
 });

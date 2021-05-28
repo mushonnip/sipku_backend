@@ -21,6 +21,9 @@
                     <x-jet-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.*')">
                         {{ __('Kategori') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                        {{ __('Users') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
             <div class="hidden sm:flex sm:items-center sm:ml-6">
